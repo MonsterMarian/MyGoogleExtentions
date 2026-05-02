@@ -1,54 +1,58 @@
-# Google Extensions Suite
+# Google Extensions Suite - Productivity Framework
 
-Repository obsahující kolekci specializovaných prohlížečových rozšíření pro automatizaci YouTube a zvýšení digitální produktivity.
+Tento repozitář obsahuje sadu specializovaných prohlížečových rozšíření zaměřených na optimalizaci pracovního toku, eliminaci distrakcí a inteligentní analýzu obsahu na platformě YouTube. Systém využívá pokročilé modely umělé inteligence pro sémantickou filtraci a automatizaci procesů.
 
 ---
 
-## 📦 Obsažené Projekty
+## Přehled modulů
 
 ### [YouTube Goal Blocker (The Judge)](./YOUTUBE_Blocker/)
-Pokročilý systém pro vynucení hluboké práce (Deep Work) na platformě YouTube.
-- **Princip**: Blokuje přehrávání videí do momentu, kdy uživatel poskytne textové zdůvodnění relevance obsahu vůči jeho dlouhodobým cílům.
-- **Technologie**: Využívá LLM **Gemini 1.5 Flash** pro sémantickou analýzu uživatelských cílů vs. obsahu videa.
-- **Funkce**: Tracking schválených relací, automatická detekce vzdělávacího/pracovního obsahu a hudby.
+Nástroj pro striktní vynucení hluboké práce a eliminaci prokrastinace.
+- **Funkce**: Systém vyžaduje od uživatele zdůvodnění relevance sledovaného obsahu vzhledem k definovaným dlouhodobým cílům.
+- **Implementace**: Využívá kaskádový systém modelů Gemini pro okamžitou analýzu záměru uživatele vs. metadat videa.
+- **Vlastnosti**: Automatická detekce edukativního obsahu a hudby, blokování ovládacích prvků přehrávače do momentu schválení, logging statistik schvalovacího procesu.
 
 ### [PromoSkiper AI](./PromoSkiper/PromoSkiper_Ext/)
-Inteligentní skip-engine pro eliminaci sponzorovaných segmentů.
-- **Princip**: V reálném čase analyzuje transkript videa a identifikuje propagační pasáže.
-- **Technologie**: Gemini 1.5 Flash API s vynuceným JSON výstupem pro přesné časování.
-- **Funkce**: Automatické přeskakování (Sponsor, Self-promo, Intro), lokální caching výsledků pro minimalizaci API latence.
+Inteligentní engine pro automatické přeskakování integrovaných marketingových sdělení.
+- **Funkce**: Analýza transkriptů videa v reálném čase za účelem identifikace sponzorovaných segmentů.
+- **Implementace**: Využívá LLM pro extrakci časových značek (start/end) s vysokou přesností.
+- **Vlastnosti**: Detekce kategorií (Sponsor, Self-promotion, Intro/Outro), lokální cache pro minimalizaci API latence, guardrails pro eliminaci falešně pozitivních detekcí u dlouhých segmentů.
 
 ### [Focus Blocker (Merged)](./Merged_Blocker/)
-Kombinovaný nástroj pro striktní blokování distraktorů.
-- **Obsah**: Sjednocuje funkce modulů `Google_ET` a `yt-shorts-blocker`.
-- **Funkce**:
-  - **Extension Guard**: Automatické uzavírání karty doplňků v definovaných časových oknech (prevence obcházení blokace).
-  - **Shorts Terminator**: Okamžitá terminace všech YouTube Shorts záložek.
-
-### [Google_ET](./Google_ET/) & [yt-shorts-blocker](./yt-shorts-blocker/)
-Jednoúčelové mikro-moduly pro uživatele, kteří preferují separátní instalaci specifických funkcí (Extension Tab closer / Shorts blocker).
+Sjednocený bezpečnostní modul pro ochranu pozornosti.
+- **Funkce**: Kombinuje nízkoúrovňové blokování specifických komponent prohlížeče.
+- **Vlastnosti**:
+  - **Extension Guard**: Automatické uzavírání systémových karet doplňků v definovaných časových oknech pro prevenci obcházení restrikcí.
+  - **Shorts Terminator**: Eliminace přístupu k YouTube Shorts za účelem ochrany kognitivní kapacity uživatele.
 
 ---
 
-## 🛠 Technické Podrobnosti
+## Technická specifikace: Gemini Fallback Cascade
 
-### AI Model & Fallbacks
-Rozšíření jsou optimalizována pro řadu modelů **Google Gemini 1.5**. Implementován je inteligentní fallback systém:
-1. `gemini-1.5-flash` (Primární – 1500 RPM limit)
-2. `gemini-1.5-flash-8b` (Záloha)
-3. `gemini-2.0-flash` (Záloha)
+Pro dosažení vysoké dostupnosti a odolnosti vůči limitům bezplatných API (Rate Limits) byla implementována architektura kaskádového fallbacku. V případě selhání primárního modelu (chyba 429 nebo 503) systém automaticky a transparentně iteruje skrze definované záložní instance.
 
-### API Konfigurace
-- **Default Key**: Repozitář obsahuje integrovaný API klíč pro okamžitou funkčnost po instalaci.
-- **Custom Key**: Uživatelé mohou v nastavení (Chrome Storage) definovat vlastní klíč pro vyšší limity.
+**Prioritní pořadí modelů:**
+1. gemini-2.0-flash
+2. gemini-2.5-flash
+3. gemini-flash-latest
+4. gemini-flash-lite-latest
+5. gemini-2.5-flash-lite
 
----
-
-## 🚀 Instalace
-1. Naklonujte repozitář: `git clone https://github.com/MonsterMarian/MyGoogleExtentions.git`
-2. Otevřete `chrome://extensions/`.
-3. Aktivujte **Developer mode**.
-4. Zvolte **Load unpacked** a vyberte složku konkrétního rozšíření.
+Tato hierarchie zajišťuje optimální poměr mezi rychlostí odezvy a dostupnou denní kvótou (až 1500 požadavků denně na jednu instanci).
 
 ---
-© 2026 Focus Suite Development
+
+## Instalace a konfigurace
+
+1. **Klonování repozitáře**: 
+   `git clone https://github.com/MonsterMarian/MyGoogleExtentions.git`
+
+2. **Nasazení do prohlížeče**:
+   - Navštivte `chrome://extensions/`.
+   - Aktivujte vývojářský režim (Developer mode).
+   - Použijte volbu "Načíst nerozbalené" (Load unpacked) a zvolte kořenový adresář vybraného rozšíření.
+
+3. **Správa API klíčů**:
+   - Rozšíření obsahují výchozí sdílený klíč pro okamžitou funkčnost.
+   - Pro individuální nasazení a vyšší kvóty doporučujeme zadat vlastní API klíč v sekci Možnosti (Options) daného rozšíření. Klíč lze získat v [Google AI Studio](https://aistudio.google.com/).
+
