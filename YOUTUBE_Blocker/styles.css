@@ -1,0 +1,250 @@
+/* Premium Glassmorphism Design */
+#yt-goal-blocker-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 2147483647 !important; /* Maximální z-index pro překrytí úplně všeho */
+  background: rgba(8, 8, 12, 0.75);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Inter', 'Roboto', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #ffffff;
+  pointer-events: auto !important; /* Musíme chytat kliky */
+}
+
+#yt-goal-blocker-container {
+  background: rgba(30, 32, 40, 0.85);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 20px;
+  padding: 48px;
+  max-width: 540px;
+  width: 90%;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.8), 0 0 0 1px rgba(255, 255, 255, 0.05) inset;
+  animation: yt-blocker-pop 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  pointer-events: auto !important;
+}
+
+@keyframes yt-blocker-pop {
+  0% { transform: scale(0.95) translateY(20px); opacity: 0; }
+  100% { transform: scale(1) translateY(0); opacity: 1; }
+}
+
+#yt-goal-blocker-container h2 {
+  margin-top: 0;
+  font-size: 28px;
+  font-weight: 800;
+  margin-bottom: 32px;
+  text-align: center;
+  color: #fff;
+  letter-spacing: -0.5px;
+  text-shadow: 0 2px 10px rgba(0,0,0,0.5);
+}
+
+.yt-blocker-accent {
+  background: linear-gradient(135deg, #FF0000 0%, #FF4D4D 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.yt-blocker-question {
+  margin-bottom: 28px;
+}
+
+.yt-blocker-question label {
+  display: block;
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 14px;
+  color: #e2e8f0;
+}
+
+.yt-blocker-radio-group {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.yt-blocker-radio-label {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  background: rgba(255, 255, 255, 0.04);
+  padding: 14px 20px;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  transition: all 0.25s ease;
+  font-weight: 600;
+  font-size: 16px;
+}
+
+.yt-blocker-radio-label:hover {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.2);
+  transform: translateY(-2px);
+}
+
+.yt-blocker-radio-label input[type="radio"] {
+  display: none;
+}
+
+/* Radio button custom styling */
+.yt-blocker-radio-custom {
+  width: 20px;
+  height: 20px;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  margin-right: 12px;
+  position: relative;
+  transition: all 0.2s;
+}
+
+.yt-blocker-radio-custom::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0);
+  width: 10px;
+  height: 10px;
+  background: #FF0000; /* YouTube Red */
+  border-radius: 50%;
+  transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.yt-blocker-radio-label input[type="radio"]:checked + .yt-blocker-radio-custom {
+  border-color: #FF0000;
+}
+
+.yt-blocker-radio-label input[type="radio"]:checked + .yt-blocker-radio-custom::after {
+  transform: translate(-50%, -50%) scale(1);
+}
+
+.yt-blocker-radio-label:has(input[type="radio"]:checked) {
+  background: rgba(255, 0, 0, 0.1);
+  border-color: rgba(255, 0, 0, 0.3);
+}
+
+.yt-blocker-textarea {
+  width: 100%;
+  background: rgba(0, 0, 0, 0.4);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  color: #fff;
+  padding: 16px;
+  font-size: 15px;
+  font-family: inherit;
+  resize: vertical;
+  min-height: 100px;
+  box-sizing: border-box;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1) inset;
+}
+
+.yt-blocker-textarea:focus {
+  outline: none;
+  border-color: #FF0000;
+  background: rgba(0, 0, 0, 0.6);
+  box-shadow: 0 0 0 3px rgba(255, 0, 0, 0.2), 0 4px 6px -1px rgba(0, 0, 0, 0.1) inset;
+}
+
+.yt-blocker-textarea::placeholder {
+  color: rgba(255, 255, 255, 0.3);
+}
+
+#yt-blocker-submit {
+  width: 100%;
+  background: linear-gradient(135deg, #FF0000 0%, #cc0000 100%);
+  color: #fff;
+  border: none;
+  padding: 16px 24px;
+  font-size: 18px;
+  font-weight: 700;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 4px 14px 0 rgba(255, 0, 0, 0.39);
+  margin-top: 10px;
+}
+
+#yt-blocker-submit:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(255, 0, 0, 0.5);
+  background: linear-gradient(135deg, #ff1a1a 0%, #e60000 100%);
+}
+
+#yt-blocker-submit:active {
+  transform: translateY(1px);
+  box-shadow: 0 2px 8px rgba(255, 0, 0, 0.4);
+}
+
+.yt-blocker-error {
+  color: #ff4d4d;
+  background: rgba(255, 0, 0, 0.1);
+  border: 1px solid rgba(255, 0, 0, 0.2);
+  padding: 12px 16px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  margin-top: 16px;
+  display: none;
+  animation: yt-blocker-shake 0.4s ease-in-out;
+  text-align: center;
+}
+
+@keyframes yt-blocker-shake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-5px); }
+  50% { transform: translateX(5px); }
+  75% { transform: translateX(-5px); }
+}
+
+/* Ensure no scrolling on body when active */
+/* AI Loader & Verdict */
+.yt-blocker-loader {
+  display: none;
+  font-size: 16px;
+  font-weight: bold;
+  color: #58a6ff;
+  text-align: center;
+  margin-top: 16px;
+}
+.yt-blocker-loader::after {
+  content: " ⏱️ Zpracovává SOUDCE...";
+  animation: yt-blocker-dots 1.5s steps(4, end) infinite;
+}
+@keyframes yt-blocker-dots {
+  0%, 20% { content: " ⏱️ Zpracovává SOUDCE."; }
+  40% { content: " ⏱️ Zpracovává SOUDCE.."; }
+  60% { content: " ⏱️ Zpracovává SOUDCE..."; }
+  80%, 100% { content: " ⏱️ Zpracovává SOUDCE...."; }
+}
+
+.yt-blocker-verdict {
+  display: none;
+  margin-top: 20px;
+  padding: 16px;
+  border-radius: 12px;
+  font-weight: 600;
+  text-align: center;
+  font-size: 16px;
+  line-height: 1.4;
+  animation: yt-blocker-pop 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.yt-blocker-verdict.approved {
+  background: rgba(46, 160, 67, 0.15);
+  border: 1px solid rgba(46, 160, 67, 0.4);
+  color: #3fb950;
+}
+
+.yt-blocker-verdict.rejected {
+  background: rgba(248, 81, 73, 0.15);
+  border: 1px solid rgba(248, 81, 73, 0.4);
+  color: #ff7b72;
+}

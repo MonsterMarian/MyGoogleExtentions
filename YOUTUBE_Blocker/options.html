@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Soudcovy Cíle - YouTube Blocker</title>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0d1117;
+            color: #c9d1d9;
+            margin: 0;
+            padding: 40px;
+            display: flex;
+            justify-content: center;
+        }
+        .container {
+            background-color: #161b22;
+            border: 1px solid #30363d;
+            border-radius: 12px;
+            padding: 30px;
+            width: 100%;
+            max-width: 600px;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.5);
+        }
+        h1 {
+            color: #58a6ff;
+            margin-top: 0;
+            margin-bottom: 24px;
+        }
+        h3 {
+            margin-bottom: 8px;
+            color: #e6edf3;
+        }
+        p.description {
+            color: #8b949e;
+            font-size: 14px;
+            margin-top: 0;
+            margin-bottom: 20px;
+            line-height: 1.5;
+        }
+        .form-group {
+            margin-bottom: 24px;
+        }
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+        input[type="text"], textarea {
+            width: 100%;
+            padding: 12px;
+            background-color: #0d1117;
+            border: 1px solid #30363d;
+            border-radius: 6px;
+            color: #c9d1d9;
+            box-sizing: border-box;
+            font-family: inherit;
+        }
+        input[type="text"]:focus, textarea:focus {
+            outline: none;
+            border-color: #58a6ff;
+            box-shadow: 0 0 0 3px rgba(88,166,255,0.3);
+        }
+        textarea {
+            resize: vertical;
+            min-height: 150px;
+        }
+        button {
+            background-color: #238636;
+            color: #ffffff;
+            border: 1px solid rgba(240,246,252,0.1);
+            padding: 10px 24px;
+            border-radius: 6px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+        button:hover {
+            background-color: #2ea043;
+        }
+        .status {
+            margin-top: 16px;
+            font-weight: bold;
+            color: #3fb950;
+            display: none;
+        }
+        a {
+            color: #58a6ff;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>YouTube SOUDCE ⚖️</h1>
+    <p class="description">Nastav pravidla hry. Uveď svůj API klíč pro AI a rozepiš své dlouhodobé životní a profesní cíle. Když budeš chtít na YouTube pustit video, SOUDCE rozhodne, zda tě to k těmto cílům posouvá nebo jen prokrastinuješ.</p>
+
+    <div class="form-group">
+        <label for="apiKey">🔑 Google Gemini API Key</label>
+        <p class="description">Získej klíč zdarma na <a href="https://aistudio.google.com/app/apikey" target="_blank">Google AI Studio</a>.</p>
+        <input type="text" id="apiKey" placeholder="AIzaSy...">
+    </div>
+
+    <div class="form-group">
+        <label for="goals">🎯 Tvé dlouhodobé cíle</label>
+        <p class="description">Uveď, co je teď tvoje priorita. Příklad: "Učím se na státnice z práva. Trénuji na maraton. Stavím vlastní aplikaci v Pythonu."</p>
+        <textarea id="goals" placeholder="Napiš sem své skutečné cíle..."></textarea>
+    </div>
+
+    <button id="saveBtn">Uložit nastavení</button>
+    <div id="status" class="status">✅ Nastavení úspěšně uloženo!</div>
+</div>
+
+<script src="options.js"></script>
+</body>
+</html>

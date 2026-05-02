@@ -1,0 +1,13 @@
+{
+  "manifest_version": 3,
+  "name": "Extensions Tab Auto-Closer",
+  "version": "1.0",
+  "description": "Closes the Extensions tab during restricted hours.",
+  "permissions": ["tabs"],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "icons": {
+    "128": "icon.png"
+  }
+}

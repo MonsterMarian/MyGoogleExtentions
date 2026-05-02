@@ -1,0 +1,5 @@
+Vytvoř extention pomocí AI (inspiruj se starým projektem (ta složka tohoto projektu))
+AI najde všechny promo části videa (co nejsou reklamy na ty mám blocker) chci na proma protože ty nejdou normálně přeskočit a jsou často otravné třeba v podcastech atd
+potom co to AI z analizuje tak dá timestempy reklam/proma a když se video dostane do daného rozmezí tak se video přetočí na konec rozmezí.
+gardrails:
+tyto proma často nejsou moc dlouhá takže pokud AI předpoví že promo trvá hodinu nebo třeba 5 minut tak to nejspíš není promo.
